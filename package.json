@@ -1,0 +1,26 @@
+{
+  "name": "pojo-router",
+  "version": "0.0.1",
+  "description": "A react hooks library to associate metadata to a path",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "William Klancnik",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8"
+  },
+  "dependencies": {
+    "lodash.isstring": "^4.0.1",
+    "path-to-regexp": "^6.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notwillk/pojo-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/notwillk/pojo-router/issues"
+  },
+  "homepage": "https://github.com/notwillk/pojo-router#readme"
+}

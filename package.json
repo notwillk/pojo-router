@@ -1,6 +1,6 @@
 {
   "name": "pojo-router",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A react hooks library to associate metadata to a path",
   "main": "index.js",
   "scripts": {

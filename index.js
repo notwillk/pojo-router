@@ -4,9 +4,11 @@ import isString from 'lodash.isstring';
 
 const InboundRouterContext = React.createContext({});
 const OutboundRouterContext = React.createContext({});
+const CurrentPathContext = React.createContext([]);
 
 const PojoRouter = ({children, namedPaths, routes, notFound}) => {
   const [cachedMatches, setCachedMatches] = useState({});
+  const currentPathState = useState('');
 
   const normalizedRouter = useMemo(
     () => routes.map(([pathOrPathName, values]) => {
@@ -51,12 +53,28 @@ const PojoRouter = ({children, namedPaths, routes, notFound}) => {
     InboundRouterContext.Provider,
     { value: allMatches },
     React.createElement(
-        OutboundRouterContext.Provider,
+      OutboundRouterContext.Provider,
       { value: outboundRouter },
-      children
+      React.createElement(
+        CurrentPathContext.Provider,
+        { value: currentPathState },
+        children
+      )
     )
   );
 }
+
+export const useCurrentPath = (...args) => {
+  const [currentPath, setCurrentPath] = useContext(CurrentPathContext);
+
+  if(args.length !== 0) {
+    const nextCurrentPath = args[0];
+    setCurrentPath(nextCurrentPath);
+    return nextCurrentPath;
+  }
+
+  return currentPath;
+};
 
 export const useMatches = pathToMatch => {
   const allMatches = useContext(InboundRouterContext);
@@ -70,6 +88,8 @@ export const useBestMatch = (pathToMatch, matchComparator) => {
   allMatches.sort(matchComparator);
   return allMatches[0];
 }
+
+export const useCurrentMatch = () => useFirstMatch(useCurrentPath());
 
 export const useOutboundRoute = pathOrPathName => {
   const allRoutes = useContext(OutboundRouterContext);

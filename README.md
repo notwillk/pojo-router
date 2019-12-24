@@ -52,7 +52,7 @@ Given a path, this returns the metadata for the first route that matches.
 
 ## useBestMatch
 
-Given a path and a compareFunction (see [Array.prototpye.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)), this returns the metadata for the best route that matches based on the provided compare function.
+Given a path and a compareFunction (see [Array.prototype.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)), this returns the metadata for the best route that matches based on the provided compare function.
 
 ## useCurrentMatch
 

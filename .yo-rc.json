@@ -1,0 +1,24 @@
+{
+  "@anansi/generator-js": {
+    "promptValues": {
+      "projectType": "library",
+      "githubOrg": "notwillk",
+      "features": [
+        "testing",
+        "CI"
+      ]
+    },
+    "githubOrg": "notwillk",
+    "rootPath": "src",
+    "assetPath": "dist",
+    "appName": "pojo-router",
+    "githubDomain": "github.com",
+    "testing": true,
+    "features": [
+      "testing",
+      "CI"
+    ],
+    "badges": "[![CircleCI](https://circleci.com/gh/notwillk/pojo-router.svg?style=shield)](https://circleci.com/gh/notwillk/pojo-router)\n\n[![npm downloads](https://img.shields.io/npm/dm/pojo-router.svg?style=flat-square)](https://www.npmjs.com/package/pojo-router)\n[![gzip size](https://img.badgesize.io/https://unpkg.com/pojo-router?compression=gzip&style=flat-square)](https://unpkg.com/pojo-router)\n[![npm version](https://img.shields.io/npm/v/pojo-routers.svg?style=flat-square)](https://www.npmjs.com/package/pojo-router)\n[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)",
+    "libPath": "lib"
+  }
+}

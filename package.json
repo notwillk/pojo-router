@@ -2,25 +2,90 @@
   "name": "pojo-router",
   "version": "0.0.3",
   "description": "A react hooks library to associate metadata to a path",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "William Klancnik",
-  "license": "MIT",
-  "peerDependencies": {
-    "react": ">=16.8"
-  },
-  "dependencies": {
-    "lodash.isstring": "^4.0.1",
-    "path-to-regexp": "^6.1.0"
+    "lint": "eslint src --ext .ts,.tsx",
+    "format": "yarn run lint --fix",
+    "type-check": "tsc",
+    "test": "cross-env NODE_ENV=test jest",
+    "test:ci": "npm test -- --ci",
+    "test:watch": "npm test -- --watch",
+    "test:coverage": "npm test -- --coverage",
+    "build:lib": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps inline --extensions '.ts,.tsx,.js' --ignore '**/__tests__/**' --ignore '**/*.d.ts'",
+    "build:types": "ttsc --build",
+    "build:clean": "rimraf lib dist *.tsbuildinfo",
+    "build": "yarn run build:lib && yarn run build:types",
+    "dev": "yarn run build:lib -w",
+    "prepare": "yarn run build",
+    "build:bundle": "rollup -c",
+    "prepublishOnly": "yarn run build:bundle"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/notwillk/pojo-router.git"
+    "url": "git+ssh://git@github.com/notwillk/pojo-router.git"
   },
   "bugs": {
     "url": "https://github.com/notwillk/pojo-router/issues"
   },
-  "homepage": "https://github.com/notwillk/pojo-router#readme"
+  "homepage": "https://github.com/notwillk/pojo-router#readme",
+  "author": "William Klancnik",
+  "license": "MIT",
+  "keywords": [
+    "router",
+    "routing",
+    "history",
+    "react"
+  ],
+  "sideEffects": false,
+  "main": "dist/index.cjs.js",
+  "module": "lib/index.js",
+  "unpkg": "dist/index.umd.min.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "src",
+    "dist",
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
+  "devDependencies": {
+    "@anansi/babel-preset": "^1.2.5",
+    "@anansi/eslint-plugin": "^0.9.9",
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.10.5",
+    "@types/jest": "^26.0.4",
+    "@types/react": "^16.9.43",
+    "@zerollup/ts-transform-paths": "^1.7.18",
+    "babel-jest": "^26.1.0",
+    "core-js": "^3.6.5",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.4.0",
+    "jest": "^26.1.0",
+    "react": "^16.13.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.21.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-filesize": "^9.0.2",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^6.1.0",
+    "ts-jest": "^26.1.2",
+    "ttypescript": "^1.5.10",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.10.5",
+    "lodash.isstring": "^4.0.1",
+    "path-to-regexp": "^6.1.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^16.8.0",
+    "react": "^16.8.2"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  }
 }

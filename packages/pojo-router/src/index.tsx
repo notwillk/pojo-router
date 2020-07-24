@@ -15,16 +15,16 @@ const InboundRouterContext = React.createContext(
   thrower as (v: string) => string[],
 );
 const OutboundRouterContext = React.createContext({} as Record<string, any>);
-const CurrentPathContext = React.createContext([
-  '',
-  (v: string) => {
-    throw new Error('missing current path context');
-  },
-] as [string, React.Dispatch<React.SetStateAction<string>>]);
+const CurrentPathContext = React.createContext('');
 
-const PojoRouter = ({ children, namedPaths, routes, notFound }) => {
+const PojoRouter = ({
+  children,
+  namedPaths,
+  routes,
+  notFound,
+  currentPath,
+}) => {
   const [cachedMatches, setCachedMatches] = useState({});
-  const currentPathState = useState('');
 
   const normalizedRouter = useMemo(
     () =>
@@ -83,18 +83,14 @@ const PojoRouter = ({ children, namedPaths, routes, notFound }) => {
     [cachedMatches, normalizedRouter, notFound],
   );
 
-  return React.createElement(
-    InboundRouterContext.Provider,
-    { value: allMatches },
-    React.createElement(
-      OutboundRouterContext.Provider,
-      { value: outboundRouter },
-      React.createElement(
-        CurrentPathContext.Provider,
-        { value: currentPathState },
-        children,
-      ),
-    ),
+  return (
+    <InboundRouterContext.Provider value={allMatches}>
+      <OutboundRouterContext.Provider value={outboundRouter}>
+        <CurrentPathContext.Provider value={currentPath}>
+          {children}
+        </CurrentPathContext.Provider>
+      </OutboundRouterContext.Provider>
+    </InboundRouterContext.Provider>
   );
 };
 

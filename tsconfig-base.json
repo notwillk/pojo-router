@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "outDir": "lib",
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "jsx": "react",
+    "declaration": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": ["jest"],
+    "composite": true,                     /* Enable project compilation */
+    "plugins": [
+      {
+        "transform": "@zerollup/ts-transform-paths"
+      }
+    ],
+    "emitDeclarationOnly": true,
+    "declarationMap": true,
+    "rootDir": ".",
+
+    "paths": {
+      "pojo-router": ["packages/pojo-router/src/*"],
+    },
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+
+  },
+  "include": ["packages/*/src"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lib",
+    "coverage"
+  ]
+}

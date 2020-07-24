@@ -1,52 +1,23 @@
 {
-  "name": "pojo-router",
-  "version": "0.0.3",
-  "description": "A react hooks library to associate metadata to a path",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
+    "release": "lerna publish",
     "lint": "eslint src --ext .ts,.tsx",
-    "format": "yarn run lint --fix",
+    "format": "eslint --fix \"packages/*/src/**/*.{js,ts,tsx}\"",
+    "clean": "lerna clean",
     "type-check": "tsc",
     "test": "cross-env NODE_ENV=test jest",
     "test:ci": "npm test -- --ci",
     "test:watch": "npm test -- --watch",
-    "test:coverage": "npm test -- --coverage",
-    "build:lib": "cross-env NODE_ENV=production babel src --out-dir lib --source-maps inline --extensions '.ts,.tsx,.js' --ignore '**/__tests__/**' --ignore '**/*.d.ts'",
+    "build": "yarn build:types && lerna run build --stream",
+    "build:bundle": "lerna run build:bundle --stream",
+    "build:clean": "lerna run build:clean --stream",
     "build:types": "ttsc --build",
-    "build:clean": "rimraf lib dist *.tsbuildinfo",
-    "build": "yarn run build:lib && yarn run build:types",
-    "dev": "yarn run build:lib -w",
-    "prepare": "yarn run build",
-    "build:bundle": "rollup -c",
-    "prepublishOnly": "yarn run build:bundle"
+    "prepare": "yarn run build:types"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/notwillk/pojo-router.git"
-  },
-  "bugs": {
-    "url": "https://github.com/notwillk/pojo-router/issues"
-  },
-  "homepage": "https://github.com/notwillk/pojo-router#readme",
-  "author": "William Klancnik",
-  "license": "MIT",
-  "keywords": [
-    "router",
-    "routing",
-    "history",
-    "react"
-  ],
-  "sideEffects": false,
-  "main": "dist/index.cjs.js",
-  "module": "lib/index.js",
-  "unpkg": "dist/index.umd.min.js",
-  "types": "lib/index.d.ts",
-  "files": [
-    "src",
-    "dist",
-    "lib",
-    "LICENSE",
-    "README.md"
-  ],
   "devDependencies": {
     "@anansi/babel-preset": "^1.2.5",
     "@anansi/eslint-plugin": "^0.9.9",
@@ -73,19 +44,5 @@
     "ts-jest": "^26.1.2",
     "ttypescript": "^1.5.10",
     "typescript": "^3.9.7"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.10.5",
-    "lodash.isstring": "^4.0.1",
-    "path-to-regexp": "^6.1.0"
-  },
-  "peerDependencies": {
-    "@types/react": "^16.8.0",
-    "react": "^16.8.2"
-  },
-  "peerDependenciesMeta": {
-    "@types/react": {
-      "optional": true
-    }
   }
 }

@@ -1,7 +1,7 @@
 const { pathsToModuleNameMapper } = require('ts-jest/utils');
 const ts = require('typescript');
 
-function readTsConfig(path = './') {
+function readTsConfig(path = './', configName = 'tsconfig.json') {
   const parseConfigHost = {
     fileExists: ts.sys.fileExists,
     readFile: ts.sys.readFile,
@@ -9,11 +9,7 @@ function readTsConfig(path = './') {
     useCaseSensitiveFileNames: true,
   };
 
-  const configFileName = ts.findConfigFile(
-    path,
-    ts.sys.fileExists,
-    'tsconfig.json',
-  );
+  const configFileName = ts.findConfigFile(path, ts.sys.fileExists, configName);
   const configFile = ts.readConfigFile(configFileName, ts.sys.readFile);
   const compilerOptions = ts.parseJsonConfigFileContent(
     configFile.config,
@@ -23,31 +19,46 @@ function readTsConfig(path = './') {
   return compilerOptions;
 }
 
-const { options } = readTsConfig();
-
-module.exports = {
-  roots: ['<rootDir>/src'],
-  /**
-   *  If you comment this out, you will get error unexpected token with optional chaining because you are using babel in your project
-   *  When using babel together with ts-jest in a project, you need to let ts-jest know about it
-   */
-  globals: {
-    'ts-jest': {
-      babelConfig: require('./.babelrc.js'),
-      tsConfig: 'tsconfig.json',
-    },
-  },
+const baseConfig = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.(j)sx?$': ['babel-jest', { rootMode: 'upward' }],
   },
-  testRegex: '((\\.|/)(test|spec))\\.tsx?$',
-  coveragePathIgnorePatterns: ['node_modules'],
+  globals: {
+    'ts-jest': {
+      babelConfig: 'babel.config.js',
+      tsConfig: '<rootDir>/tsconfig.test.json',
+    },
+  },
+  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(j|t)sx?$',
+  coveragePathIgnorePatterns: [
+    'node_modules',
+  ],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   moduleNameMapper: {
-    ...pathsToModuleNameMapper(options.paths || [], {
-      prefix: '<rootDir>/',
-    }),
+    ...pathsToModuleNameMapper(
+      readTsConfig('./', 'tsconfig.test.json').options.paths,
+      {
+        prefix: '<rootDir>/',
+      },
+    ),
   },
-  setupFiles: ['./scripts/testSetup.js'],
+  testURL: 'http://localhost',
+};
+
+const packages = [
+  'pojo-router',
+];
+
+const projects = [
+  {
+    ...baseConfig,
+    rootDir: __dirname,
+    roots: packages.map(pkgName => `<rootDir>/packages/${pkgName}/src`),
+    setupFiles: ['<rootDir>/scripts/testSetup.js'],
+  },
+];
+
+module.exports = {
+  projects,
 };

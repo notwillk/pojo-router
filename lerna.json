@@ -1,0 +1,17 @@
+{
+  "lerna": "0.0.1",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "version": "independent",
+  "command": {
+    "publish": {
+      "conventionalCommits": true,
+      "preid": "beta",
+      "preDistTag": "beta",
+      "changelogPreset": "anansi",
+      "createRelease": "github",
+      "message": "internal: publish",
+      "ignoreChanges": ["**/__tests__/**", "**/*.md"]
+    }
+  }
+}

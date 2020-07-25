@@ -3709,6 +3709,15 @@ contains-path@^0.1.0:
   resolved "https://registry.yarnpkg.com/contains-path/-/contains-path-0.1.0.tgz#fe8cf184ff6670b6baef01a9d4861a5cbec4120a"
   integrity sha1-/ozxhP9mcLa67wGp1IYaXL7EEgo=
 
+conventional-changelog-anansi@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/conventional-changelog-anansi/-/conventional-changelog-anansi-0.1.1.tgz#8d95bb0100feda04fa081a019582712b8d8d0c1e"
+  integrity sha512-mVY9tufTQ46fJ3JcRazE20Ro4dkoiz6F7qUf8b5N/KAXeM5E6ZI4eOtlO/l4aS94XZqmse91I/JqgP6y3/HnnA==
+  dependencies:
+    compare-func "^1.3.1"
+    lodash "^4.17.15"
+    q "^1.5.1"
+
 conventional-changelog-angular@^5.0.3:
   version "5.0.10"
   resolved "https://registry.yarnpkg.com/conventional-changelog-angular/-/conventional-changelog-angular-5.0.10.tgz#5cf7b00dd315b6a6a558223c80d5ef24ddb34205"

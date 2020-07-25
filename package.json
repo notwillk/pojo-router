@@ -27,6 +27,7 @@
     "@types/react": "^16.9.43",
     "@zerollup/ts-transform-paths": "^1.7.18",
     "babel-jest": "^26.1.0",
+    "conventional-changelog-anansi": "^0.1.1",
     "core-js": "^3.6.5",
     "cross-env": "^7.0.2",
     "eslint": "^7.4.0",

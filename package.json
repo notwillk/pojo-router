@@ -19,7 +19,7 @@
     "prepare": "yarn run build:types"
   },
   "devDependencies": {
-    "@anansi/babel-preset": "^1.2.5",
+    "@anansi/babel-preset": "^1.2.6",
     "@anansi/eslint-plugin": "^0.9.9",
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",

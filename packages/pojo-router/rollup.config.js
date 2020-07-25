@@ -28,13 +28,14 @@ function isExternal(id) {
 export default [
   // browser-friendly UMD build
   {
-    input: 'src/index.ts',
+    input: 'src/index.tsx',
     external: isExternal,
     output: [{ file: pkg.unpkg, format: 'umd', name: 'pojo-router' }],
     plugins: [
       babel({
         exclude: ['node_modules/**', '**/__tests__/**'],
         extensions,
+        rootMode: 'upward',
         runtimeHelpers: true,
       }),
       replace({ 'process.env.NODE_ENV': JSON.stringify('production') }),
@@ -47,13 +48,14 @@ export default [
   },
   // node-friendly commonjs build
   {
-    input: 'src/index.ts',
+    input: 'src/index.tsx',
     external: isExternal,
     output: [{ file: pkg.main, format: 'cjs' }],
     plugins: [
       babel({
         exclude: ['node_modules/**', '**/__tests__/**', '**/*.d.ts'],
         extensions,
+        rootMode: 'upward',
         runtimeHelpers: true,
       }),
       resolve({ extensions }),

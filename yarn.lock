@@ -2,13 +2,13 @@
 # yarn lockfile v1
 
 
-"@anansi/babel-preset@^1.2.5":
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/@anansi/babel-preset/-/babel-preset-1.2.5.tgz#e16cc62ce66c883ca00385bad591ebadbb229c91"
-  integrity sha512-aHUuDhAP0ir8x4iyDY51NrcdfJsT9GV4Cm/lT7/4Sq94OPgRLZw/OLeSeSk3Hg0D2fFp6CEPPX1EqjFtwZhmIQ==
+"@anansi/babel-preset@^1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@anansi/babel-preset/-/babel-preset-1.2.6.tgz#0b52f97bf77954b0345aac6cf5176126edcbaafc"
+  integrity sha512-h6Rq0anuKswH00qQkdihXQUbjveib265ZjH6V2b0+X2XaVe1nCZewQnFwteGKBQKonFEgoq64gTGFL/Y7i5eqg==
   dependencies:
     "@babel/plugin-proposal-class-properties" "^7.10.4"
-    "@babel/plugin-proposal-decorators" "^7.10.4"
+    "@babel/plugin-proposal-decorators" "^7.10.5"
     "@babel/plugin-proposal-export-default-from" "^7.10.4"
     "@babel/plugin-proposal-export-namespace-from" "^7.10.4"
     "@babel/plugin-proposal-private-methods" "^7.10.4"
@@ -18,8 +18,8 @@
     "@babel/plugin-transform-object-assign" "^7.10.4"
     "@babel/plugin-transform-react-constant-elements" "^7.10.4"
     "@babel/plugin-transform-react-inline-elements" "^7.10.4"
-    "@babel/plugin-transform-runtime" "^7.10.4"
-    "@babel/plugin-transform-typescript" "^7.10.4"
+    "@babel/plugin-transform-runtime" "^7.10.5"
+    "@babel/plugin-transform-typescript" "^7.10.5"
     "@babel/preset-env" "^7.10.4"
     "@babel/preset-react" "^7.10.4"
     babel-plugin-lodash "^3.3.4"
@@ -357,7 +357,7 @@
     "@babel/helper-create-class-features-plugin" "^7.10.4"
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/plugin-proposal-decorators@^7.10.4":
+"@babel/plugin-proposal-decorators@^7.10.5":
   version "7.10.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-decorators/-/plugin-proposal-decorators-7.10.5.tgz#42898bba478bc4b1ae242a703a953a7ad350ffb4"
   integrity sha512-Sc5TAQSZuLzgY0664mMDn24Vw2P8g/VhyLyGPaWiHahhgLqeZvcGeyBZOrJW0oSKIK2mvQ22a1ENXBIQLhrEiQ==
@@ -873,7 +873,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/plugin-transform-runtime@^7.10.4":
+"@babel/plugin-transform-runtime@^7.10.5":
   version "7.10.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-runtime/-/plugin-transform-runtime-7.10.5.tgz#3b39b7b24830e0c2d8ff7a4489fe5cf99fbace86"
   integrity sha512-tV4V/FjElJ9lQtyjr5xD2IFFbgY46r7EeVu5a8CpEKT5laheHKSlFeHjpkPppW3PqzGLAuv5k2qZX5LgVZIX5w==
@@ -920,7 +920,7 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/plugin-transform-typescript@^7.10.4":
+"@babel/plugin-transform-typescript@^7.10.5":
   version "7.10.5"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.10.5.tgz#edf353944e979f40d8ff9fe4e9975d0a465037c5"
   integrity sha512-YCyYsFrrRMZ3qR7wRwtSSJovPG5vGyG4ZdcSAivGwTfoasMp3VOB/AKhohu3dFtmB4cCDcsndCSxGtrdliCsZQ==

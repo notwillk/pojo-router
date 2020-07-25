@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
+    "@types/lodash": "^4.14.158",
     "lerna": "^3.22.1",
     "lodash.isstring": "^4.0.1",
     "path-to-regexp": "^6.1.0"

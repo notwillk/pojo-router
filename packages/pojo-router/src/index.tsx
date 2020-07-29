@@ -8,11 +8,21 @@ import React, {
 import { match as matchPath, compile } from 'path-to-regexp';
 import isString from 'lodash.isstring';
 
+// We want to allow re-declaration of this by declaration merging,
+// but assume types if not defined
+
+// styled-components uses this to have theme defined.
+// https://styled-components.com/docs/api#create-a-declarations-file
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface DefaultRoutePojo {}
+
+type AnyIfEmpty<T extends object> = keyof T extends never ? any : T;
+
 const thrower = (v: string) => {
   throw new Error('context not set');
 };
 const InboundRouterContext = React.createContext(
-  thrower as (v: string) => string[],
+  thrower as (v: string) => AnyIfEmpty<DefaultRoutePojo>[],
 );
 const OutboundRouterContext = React.createContext({} as Record<string, any>);
 const CurrentPathContext = React.createContext('');
@@ -22,8 +32,8 @@ type NamedPath = {
   sensitive?: boolean;
   [k: string]: any;
 };
-type Route = [string, Record<string, any>];
-type Props = {
+type Route = [string, AnyIfEmpty<DefaultRoutePojo>];
+type Props<RoutePojo> = {
   children: React.ReactChild;
   namedPaths: Record<string, string | NamedPath>;
   routes: Route[];
@@ -31,13 +41,13 @@ type Props = {
   currentPath: string;
 };
 
-const PojoRouter = ({
+const PojoRouter = <T extends Record<string, any>>({
   children,
   namedPaths,
   routes,
   notFound,
   currentPath,
-}: Props) => {
+}: Props<T>) => {
   const [cachedMatches, setCachedMatches] = useState({});
 
   const normalizedRouter = useMemo(
@@ -115,18 +125,22 @@ const PojoRouter = ({
   );
 };
 
-export const useCurrentPath = (...args) => {
+export const useCurrentPath = () => {
   return useContext(CurrentPathContext);
 };
 
-export const useMatches = (pathToMatch) => {
+export const useMatches = (pathToMatch: string) => {
   const allMatches = useContext(InboundRouterContext);
   return allMatches(pathToMatch);
 };
 
-export const useFirstMatch = (pathToMatch) => useMatches(pathToMatch)[0];
+export const useFirstMatch = (pathToMatch: string) =>
+  useMatches(pathToMatch)[0];
 
-export const useBestMatch = (pathToMatch, matchComparator) => {
+export const useBestMatch = (
+  pathToMatch: string,
+  matchComparator: (s1: string, s2: string) => number,
+) => {
   const allMatches = useMatches(pathToMatch);
   allMatches.sort(matchComparator);
   return allMatches[0];
@@ -134,7 +148,7 @@ export const useBestMatch = (pathToMatch, matchComparator) => {
 
 export const useCurrentMatch = () => useFirstMatch(useCurrentPath());
 
-export const useOutboundRoute = (pathOrPathName) => {
+export const useOutboundRoute = (pathOrPathName: string) => {
   const allRoutes = useContext(OutboundRouterContext);
   const outboundRoute = allRoutes[pathOrPathName];
 

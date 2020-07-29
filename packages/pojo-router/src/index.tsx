@@ -18,7 +18,7 @@ export interface DefaultRoutePojo {}
 
 type AnyIfEmpty<T extends object> = keyof T extends never ? any : T;
 
-const thrower = (v: string) => {
+const thrower = () => {
   throw new Error('context not set');
 };
 const InboundRouterContext = React.createContext(
@@ -33,7 +33,7 @@ type NamedPath = {
   [k: string]: any;
 };
 type Route = [string, AnyIfEmpty<DefaultRoutePojo>];
-type Props<RoutePojo> = {
+type Props = {
   children: React.ReactChild;
   namedPaths: Record<string, string | NamedPath>;
   routes: Route[];
@@ -41,13 +41,13 @@ type Props<RoutePojo> = {
   currentPath: string;
 };
 
-const PojoRouter = <T extends Record<string, any>>({
+const PojoRouter = ({
   children,
-  namedPaths,
+  namedPaths = {},
   routes,
   notFound,
   currentPath,
-}: Props<T>) => {
+}: Props) => {
   const [cachedMatches, setCachedMatches] = useState({});
 
   const normalizedRouter = useMemo(

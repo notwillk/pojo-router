@@ -32,12 +32,12 @@ type NamedPath = {
   sensitive?: boolean;
   [k: string]: any;
 };
-type Route = [string, AnyIfEmpty<DefaultRoutePojo>];
+type Route = readonly [string, AnyIfEmpty<DefaultRoutePojo>];
 type Props = {
   children: React.ReactChild;
   namedPaths: Record<string, string | NamedPath>;
-  routes: Route[];
-  notFound: boolean;
+  routes: readonly Route[];
+  notFound: AnyIfEmpty<DefaultRoutePojo>;
   currentPath: string;
 };
 

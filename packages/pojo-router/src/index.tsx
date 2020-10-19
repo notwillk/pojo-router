@@ -1,7 +1,4 @@
-import React, {
-  useMemo,
-  useContext,
-} from 'react';
+import React, { useMemo, useContext } from 'react';
 import { match as matchPath, compile } from 'path-to-regexp';
 import isString from 'lodash.isstring';
 
@@ -27,7 +24,7 @@ const CurrentPathContext = React.createContext('');
 type NamedPath = {
   path: string;
   sensitive?: boolean;
-  [k: string]: any;
+  [k: string]: unknown;
 };
 type Route = readonly [string, AnyIfEmpty<DefaultRoutePojo>];
 type Props = {
@@ -78,38 +75,34 @@ const PojoRouter = ({
     [normalizedRouter],
   );
 
+  const allMatches = useMemo(() => {
+    // cache for match lookups. Reset if routes ever change.
+    // could make this LRU if it takes up too much space.
+    const cachedMatches = {};
 
-  const allMatches = useMemo(
-    () => {
-      // cache for match lookups. Reset if routes ever change.
-      // could make this LRU if it takes up too much space.
-      const cachedMatches = {};
-
-      return (pathToMatch: string) => {
-        if (pathToMatch in cachedMatches) {
-          return cachedMatches[pathToMatch];
-        }
-
-        const allMatches = normalizedRouter.reduce(
-          (
-            acc: Record<string, any>[],
-            { matcher, values },
-          ): Record<string, any>[] => {
-            const match = matcher(pathToMatch);
-            const params = match && match.params ? match.params : {};
-            return match ? [...acc, { ...values, ...params }] : acc;
-          },
-          [],
-        );
-
-        const matches = allMatches.length === 0 ? [notFound] : allMatches;
-        cachedMatches[pathToMatch] = matches
-
-        return matches;
+    return (pathToMatch: string) => {
+      if (pathToMatch in cachedMatches) {
+        return cachedMatches[pathToMatch];
       }
-    },
-    [normalizedRouter, notFound],
-  );
+
+      const allMatches = normalizedRouter.reduce(
+        (
+          acc: Record<string, any>[],
+          { matcher, values },
+        ): Record<string, any>[] => {
+          const match = matcher(pathToMatch);
+          const params = match && match.params ? match.params : {};
+          return match ? [...acc, { ...values, ...params }] : acc;
+        },
+        [],
+      );
+
+      const matches = allMatches.length === 0 ? [notFound] : allMatches;
+      cachedMatches[pathToMatch] = matches;
+
+      return matches;
+    };
+  }, [normalizedRouter, notFound]);
 
   return (
     <InboundRouterContext.Provider value={allMatches}>
@@ -123,7 +116,7 @@ const PojoRouter = ({
 };
 PojoRouter.defaultValues = {
   namedPaths: {},
-}
+};
 
 export const useCurrentPath = () => {
   return useContext(CurrentPathContext);

@@ -10,9 +10,14 @@ export type LinkProps<
 > = {
   to: string;
   replace: boolean;
-  component: React.ComponentType<P>;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-} & P;
+} & (
+  | ({ component: React.ComponentType<P> } & P)
+  | ({
+      component: string;
+      children: React.ReactChild;
+    } & React.AnchorHTMLAttributes<HTMLAnchorElement>) // for builtins use anchor tag props
+);
 
 export function Link<
   P extends Pick<

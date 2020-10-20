@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.3.0 (2020-10-20)
+
+* feat: Export UpdateContext ([88b2089](https://github.com/notwillk/pojo-router/commit/88b2089))
+* internal: Bump version (patch) ([b7e93b4](https://github.com/notwillk/pojo-router/commit/b7e93b4))
+
+
+
+
+
 ## 0.2.0 (2020-10-20)
 
 * feat: Add <Link /> (#13) ([60e7402](https://github.com/notwillk/pojo-router/commit/60e7402)), closes [#13](https://github.com/notwillk/pojo-router/issues/13)

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.1.3 (2020-10-20)</small>
+
+* fix: Add types, correctly type InboundRouterContext, make namedPaths optional ([56020cd](https://github.com/notwillk/pojo-router/commit/56020cd))
+* fix: correct notFound type, type routes as readOnly ([abd0ccc](https://github.com/notwillk/pojo-router/commit/abd0ccc))
+* fix: Use closure for cache (#11) ([771616b](https://github.com/notwillk/pojo-router/commit/771616b)), closes [#11](https://github.com/notwillk/pojo-router/issues/11)
+* bump version ([6469723](https://github.com/notwillk/pojo-router/commit/6469723))
+* update ([9f15353](https://github.com/notwillk/pojo-router/commit/9f15353))
+* version bump ([d199635](https://github.com/notwillk/pojo-router/commit/d199635))
+
+
+
+
+
 ## 0.1.0 (2020-07-25)
 
 * fix: Fix build things (#5) ([3b7e7a5](https://github.com/notwillk/pojo-router/commit/3b7e7a5)), closes [#5](https://github.com/notwillk/pojo-router/issues/5)

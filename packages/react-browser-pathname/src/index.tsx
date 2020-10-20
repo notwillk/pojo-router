@@ -30,15 +30,6 @@ const BrowserPathname = ({ children }: { children: ReactNode }) => {
       </PathnameContext.Provider>
     </UpdateContext.Provider>
   );
-  return React.createElement(
-    UpdateContext.Provider,
-    { value: setCurrentBrowserPathname },
-    React.createElement(
-      PathnameContext.Provider,
-      { value: location },
-      children,
-    ),
-  );
 };
 
 export const useBrowserPathname = () => useContext(PathnameContext);

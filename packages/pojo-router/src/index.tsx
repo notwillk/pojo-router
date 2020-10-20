@@ -1,5 +1,10 @@
 import React, { useMemo, useContext } from 'react';
 import { match as matchPath, compile } from 'path-to-regexp';
+import type {
+  ParseOptions,
+  TokensToRegexpOptions,
+  RegexpToFunctionOptions,
+} from 'path-to-regexp';
 import isString from 'lodash.isstring';
 
 // We want to allow re-declaration of this by declaration merging,
@@ -21,11 +26,9 @@ const InboundRouterContext = React.createContext(
 const OutboundRouterContext = React.createContext({} as Record<string, any>);
 const CurrentPathContext = React.createContext('');
 
-type NamedPath = {
-  path: string;
-  sensitive?: boolean;
-  [k: string]: unknown;
-};
+type NamedPath = { path: string } & ParseOptions &
+  TokensToRegexpOptions &
+  RegexpToFunctionOptions;
 type Route = readonly [string, AnyIfEmpty<DefaultRoutePojo>];
 type Props = {
   children: React.ReactChild;

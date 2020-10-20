@@ -37,7 +37,7 @@ export function Link<
 
       // let browser handle "target=_blank" etc.
       if (!rest.target || rest.target === '_self') {
-        nav({}, '', to);
+        nav.call(window.history, {}, '', to);
         setCurrentBrowserPathname();
       }
     },

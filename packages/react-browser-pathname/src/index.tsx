@@ -57,3 +57,4 @@ export const useReplacePath = () => {
 
 export default BrowserPathname;
 export { Link } from './Link';
+export { UpdateContext };

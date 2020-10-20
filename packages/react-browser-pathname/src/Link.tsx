@@ -2,22 +2,24 @@ import React, { useCallback, useContext } from 'react';
 
 import { UpdateContext } from './context';
 
-export interface LinkProps
-  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+export type LinkProps<
+  P extends Pick<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    'onClick' | 'target'
+  >
+> = {
   to: string;
   replace: boolean;
-  target?: string;
-  component: React.ComponentType<React.AnchorHTMLAttributes<HTMLAnchorElement>>;
+  component: React.ComponentType<P>;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-}
+} & P;
 
-export function Link({
-  to,
-  replace,
-  component: Component,
-  onClick,
-  ...rest
-}: LinkProps) {
+export function Link<
+  P extends Pick<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    'onClick' | 'target'
+  > = React.AnchorHTMLAttributes<HTMLAnchorElement>
+>({ to, replace, component: Component, onClick, ...rest }: LinkProps<P>) {
   const setCurrentBrowserPathname = useContext(UpdateContext);
 
   const handleClick = useCallback(
@@ -37,7 +39,7 @@ export function Link({
     [to, replace, setCurrentBrowserPathname, onClick, rest.target],
   );
 
-  return <Component onClick={handleClick} {...rest} />;
+  return <Component onClick={handleClick} {...(rest as any)} />;
 }
 Link.defaultProps = {
   component: 'a',

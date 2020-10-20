@@ -1,4 +1,9 @@
 # pojo-router
+<!--[![CircleCI](https://circleci.com/gh/notwillk/pojo-router.svg?style=shield)](https://circleci.com/gh/notwillk/pojo-router)-->
+[![npm downloads](https://img.shields.io/npm/dm/pojo-router.svg?style=flat-square)](https://www.npmjs.com/package/pojo-router)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/pojo-router?style=flat-square)](https://bundlephobia.com/result?p=pojo-router)
+[![npm version](https://img.shields.io/npm/v/pojo-router.svg?style=flat-square)](https://www.npmjs.com/package/pojo-router)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 A hook based machanism to convert a string (i.e. a path) into metadata.
 

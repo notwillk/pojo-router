@@ -2,12 +2,13 @@ import React, { useCallback, useContext } from 'react';
 
 import { UpdateContext } from './context';
 
-export interface LinkProps {
+export interface LinkProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   to: string;
   replace: boolean;
+  target?: string;
   component: React.ComponentType<React.AnchorHTMLAttributes<HTMLAnchorElement>>;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-  children: React.ReactChildren;
 }
 
 export function Link({
@@ -15,7 +16,7 @@ export function Link({
   replace,
   component: Component,
   onClick,
-  children,
+  ...rest
 }: LinkProps) {
   const setCurrentBrowserPathname = useContext(UpdateContext);
 
@@ -26,17 +27,17 @@ export function Link({
       const nav = replace
         ? window.history.replaceState
         : window.history.pushState;
-      nav({}, '', to);
-      setCurrentBrowserPathname();
+
+      // let browser handle "target=_blank" etc.
+      if (!rest.target || rest.target === '_self') {
+        nav({}, '', to);
+        setCurrentBrowserPathname();
+      }
     },
-    [to, replace, setCurrentBrowserPathname, onClick],
+    [to, replace, setCurrentBrowserPathname, onClick, rest.target],
   );
 
-  return (
-    <Component href="#" onClick={handleClick}>
-      {children}
-    </Component>
-  );
+  return <Component onClick={handleClick} {...rest} />;
 }
 Link.defaultProps = {
   component: 'a',

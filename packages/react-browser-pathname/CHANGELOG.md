@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.3.2 (2020-10-20)</small>
+
+* fix: Link clicks ([f81ab2a](https://github.com/notwillk/pojo-router/commit/f81ab2a))
+* docs: Add badges ([7ff1688](https://github.com/notwillk/pojo-router/commit/7ff1688))
+
+
+
+
+
 ## <small>0.3.1 (2020-10-20)</small>
 
 * fix: Improve Link types ([893c6d2](https://github.com/notwillk/pojo-router/commit/893c6d2))

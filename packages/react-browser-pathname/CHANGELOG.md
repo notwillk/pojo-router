@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.3.1 (2020-10-20)</small>
+
+* fix: Improve Link types ([893c6d2](https://github.com/notwillk/pojo-router/commit/893c6d2))
+
+
+
+
+
 ## 0.3.0 (2020-10-20)
 
 * feat: Export UpdateContext ([88b2089](https://github.com/notwillk/pojo-router/commit/88b2089))

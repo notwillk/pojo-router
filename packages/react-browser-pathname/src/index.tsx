@@ -1,10 +1,7 @@
 import React, { useContext, useCallback, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
-const PathnameContext = React.createContext<string | null>(null);
-const UpdateContext = React.createContext(() => {
-  return;
-});
+import { PathnameContext, UpdateContext } from './context';
 
 const getPathname = () => `${window.location.pathname}`;
 
@@ -59,3 +56,4 @@ export const useReplacePath = () => {
 };
 
 export default BrowserPathname;
+export { Link } from './Link';

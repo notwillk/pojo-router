@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.3.3 (2020-10-21)</small>
+
+* fix: Make pathname always a string ([bf1b6ac](https://github.com/notwillk/pojo-router/commit/bf1b6ac))
+
+
+
+
+
 ## <small>0.3.2 (2020-10-20)</small>
 
 * fix: Link clicks ([f81ab2a](https://github.com/notwillk/pojo-router/commit/f81ab2a))

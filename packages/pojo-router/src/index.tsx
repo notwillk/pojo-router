@@ -20,7 +20,7 @@ type AnyIfEmpty<T extends object> = keyof T extends never ? any : T;
 const thrower = () => {
   throw new Error('context not set');
 };
-const InboundRouterContext = React.createContext(
+export const InboundRouterContext = React.createContext(
   thrower as (v: string) => AnyIfEmpty<DefaultRoutePojo>[],
 );
 const OutboundRouterContext = React.createContext({} as Record<string, any>);
@@ -129,6 +129,8 @@ export const useMatches = (pathToMatch: string) => {
   const allMatches = useContext(InboundRouterContext);
   return allMatches(pathToMatch);
 };
+
+export const useMatchFinder = () => useContext(InboundRouterContext);
 
 export const useFirstMatch = (pathToMatch: string) =>
   useMatches(pathToMatch)[0];

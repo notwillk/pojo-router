@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.2.0 (2020-10-21)
+
+* feat: Add useMatchFinder() ([adf5c13](https://github.com/notwillk/pojo-router/commit/adf5c13))
+* docs: Add badges ([7ff1688](https://github.com/notwillk/pojo-router/commit/7ff1688))
+
+
+
+
+
 ## <small>0.1.3 (2020-10-20)</small>
 
 * fix: Add types, correctly type InboundRouterContext, make namedPaths optional ([56020cd](https://github.com/notwillk/pojo-router/commit/56020cd))

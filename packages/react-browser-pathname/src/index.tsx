@@ -8,11 +8,24 @@ const getPathname = () => `${window.location.pathname}`;
 const BrowserPathname = ({
   children,
   initialPath,
+  onChange,
 }: {
   children: ReactNode;
   initialPath: string;
+  onChange?: (path: string, callback: () => void | undefined) => void;
 }) => {
   const [location, setLocation] = useState(initialPath);
+
+  const updatePathname = useCallback(
+    (url: string) => {
+      if (onChange) {
+        onChange(url, () => setLocation(url));
+      } else {
+        setLocation(url);
+      }
+    },
+    [onChange, setLocation],
+  );
 
   const setCurrentBrowserPathname = useCallback(
     ({ data, title, url, type }: SET_ACTION) => {
@@ -24,19 +37,21 @@ const BrowserPathname = ({
           window.history.pushState(data, title, url);
           break;
       }
-      if (url) setLocation(url);
+      if (url) {
+        updatePathname(url);
+      }
     },
-    [],
+    [updatePathname],
   );
 
   useEffect(() => {
-    const update = () => setLocation(getPathname());
+    const update = () => updatePathname(getPathname());
     window.addEventListener('popstate', update);
 
     return () => {
       window.removeEventListener('popstate', update);
     };
-  }, [setLocation]);
+  }, [updatePathname]);
 
   return (
     <UpdateContext.Provider value={setCurrentBrowserPathname}>

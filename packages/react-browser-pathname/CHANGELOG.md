@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.4.1 (2020-10-27)</small>
+
+* fix: Update <Link/> to use new api ([3d3c871](https://github.com/notwillk/pojo-router/commit/3d3c871))
+
+
+
+
+
 ## 0.4.0 (2020-10-27)
 
 * enhance: setCurrentBrowserPathname() takes arguments (#14) ([345edad](https://github.com/notwillk/pojo-router/commit/345edad)), closes [#14](https://github.com/notwillk/pojo-router/issues/14)

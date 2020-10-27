@@ -1,6 +1,6 @@
 {
   "name": "@pojo-router/react-browser-pathname",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A react hooks wrapper around the browser's pathname",
   "scripts": {
     "build:lib": "cross-env NODE_ENV=production babel src --root-mode upward --out-dir lib --source-maps inline --extensions '.ts,.tsx,.js' --ignore '**/__tests__/**' --ignore '**/*.d.ts'",

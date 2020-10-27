@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.2.1 (2020-10-27)</small>
+
+* fix: Lerna is not a dependency of pojo-router ([e2681cb](https://github.com/notwillk/pojo-router/commit/e2681cb))
+
+
+
+
+
 ## 0.2.0 (2020-10-21)
 
 * feat: Add useMatchFinder() ([adf5c13](https://github.com/notwillk/pojo-router/commit/adf5c13))

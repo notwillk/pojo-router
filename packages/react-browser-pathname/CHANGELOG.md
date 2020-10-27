@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.4.0 (2020-10-27)
+
+* enhance: setCurrentBrowserPathname() takes arguments (#14) ([345edad](https://github.com/notwillk/pojo-router/commit/345edad)), closes [#14](https://github.com/notwillk/pojo-router/issues/14)
+
+
+### BREAKING CHANGE
+
+* Must send arguments to setCurrentBrowserPathname.
+Also required initialPath argument to <BrowserPathname/>
+
+
+
+
 ## <small>0.3.3 (2020-10-21)</small>
 
 * fix: Make pathname always a string ([bf1b6ac](https://github.com/notwillk/pojo-router/commit/bf1b6ac))

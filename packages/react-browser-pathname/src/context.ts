@@ -3,7 +3,6 @@ import type { ReactNode } from 'react';
 
 export type SET_ACTION = {
   url?: string;
-  title: string;
   data: object;
   type: 'REPLACE' | 'PUSH';
 };

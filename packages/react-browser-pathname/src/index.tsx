@@ -28,13 +28,13 @@ const BrowserPathname = ({
   );
 
   const setCurrentBrowserPathname = useCallback(
-    ({ data, title, url, type }: SET_ACTION) => {
+    ({ data, url, type }: SET_ACTION) => {
       switch (type) {
         case 'REPLACE':
-          window.history.replaceState(data, title, url);
+          window.history.replaceState(data, '', url);
           break;
         case 'PUSH':
-          window.history.pushState(data, title, url);
+          window.history.pushState(data, '', url);
           break;
       }
       if (url) {
@@ -68,8 +68,8 @@ export const usePushPath = () => {
   const setCurrentBrowserPathname = useContext(UpdateContext);
 
   return useCallback(
-    (url: string, title: string | undefined = '') => {
-      setCurrentBrowserPathname({ url, title, data: {}, type: 'PUSH' });
+    (url: string) => {
+      setCurrentBrowserPathname({ url, data: {}, type: 'PUSH' });
     },
     [setCurrentBrowserPathname],
   );
@@ -79,8 +79,8 @@ export const useReplacePath = () => {
   const setCurrentBrowserPathname = useContext(UpdateContext);
 
   return useCallback(
-    (url: string, title = '') => {
-      setCurrentBrowserPathname({ url, title, data: {}, type: 'REPLACE' });
+    (url: string) => {
+      setCurrentBrowserPathname({ url, data: {}, type: 'REPLACE' });
     },
     [setCurrentBrowserPathname],
   );

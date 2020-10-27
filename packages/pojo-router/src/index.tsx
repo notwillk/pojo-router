@@ -31,7 +31,7 @@ type NamedPath = { path: string } & ParseOptions &
   RegexpToFunctionOptions;
 type Route = readonly [string, AnyIfEmpty<DefaultRoutePojo>];
 type Props = {
-  children: React.ReactChild;
+  children: React.ReactNode;
   namedPaths: Record<string, string | NamedPath>;
   routes: readonly Route[];
   notFound: AnyIfEmpty<DefaultRoutePojo>;

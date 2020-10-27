@@ -15,7 +15,7 @@ export type LinkProps<
   | ({ component: React.ComponentType<P> } & P)
   | ({
       component: string;
-      children: React.ReactChild;
+      children: React.ReactNode;
     } & React.AnchorHTMLAttributes<HTMLAnchorElement>) // for builtins use anchor tag props
 );
 

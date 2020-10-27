@@ -31,14 +31,14 @@ export function Link<
     (e) => {
       e?.preventDefault();
       onClick?.(e);
-      const nav = replace
-        ? window.history.replaceState
-        : window.history.pushState;
 
       // let browser handle "target=_blank" etc.
       if (!rest.target || rest.target === '_self') {
-        nav.call(window.history, {}, '', to);
-        setCurrentBrowserPathname();
+        setCurrentBrowserPathname({
+          url: to,
+          data: {},
+          type: replace ? 'REPLACE' : 'PUSH',
+        });
       }
     },
     [to, replace, setCurrentBrowserPathname, onClick, rest.target],

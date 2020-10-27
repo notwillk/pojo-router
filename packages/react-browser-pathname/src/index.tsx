@@ -1,24 +1,57 @@
 import React, { useContext, useCallback, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
-import { PathnameContext, UpdateContext } from './context';
+import { PathnameContext, UpdateContext, SET_ACTION } from './context';
 
 const getPathname = () => `${window.location.pathname}`;
 
-const BrowserPathname = ({ children }: { children: ReactNode }) => {
-  const [location, setLocation] = useState(getPathname());
+const BrowserPathname = ({
+  children,
+  initialPath,
+  onChange,
+}: {
+  children: ReactNode;
+  initialPath: string;
+  onChange?: (path: string, callback: () => void | undefined) => void;
+}) => {
+  const [location, setLocation] = useState(initialPath);
 
-  const setCurrentBrowserPathname = useCallback(() => {
-    setLocation(getPathname());
-  }, []);
+  const updatePathname = useCallback(
+    (url: string) => {
+      if (onChange) {
+        onChange(url, () => setLocation(url));
+      } else {
+        setLocation(url);
+      }
+    },
+    [onChange, setLocation],
+  );
+
+  const setCurrentBrowserPathname = useCallback(
+    ({ data, url, type }: SET_ACTION) => {
+      switch (type) {
+        case 'REPLACE':
+          window.history.replaceState(data, '', url);
+          break;
+        case 'PUSH':
+          window.history.pushState(data, '', url);
+          break;
+      }
+      if (url) {
+        updatePathname(url);
+      }
+    },
+    [updatePathname],
+  );
 
   useEffect(() => {
-    window.addEventListener('popstate', setCurrentBrowserPathname);
+    const update = () => updatePathname(getPathname());
+    window.addEventListener('popstate', update);
 
     return () => {
-      window.removeEventListener('popstate', setCurrentBrowserPathname);
+      window.removeEventListener('popstate', update);
     };
-  }, [setCurrentBrowserPathname]);
+  }, [updatePathname]);
 
   return (
     <UpdateContext.Provider value={setCurrentBrowserPathname}>
@@ -35,9 +68,8 @@ export const usePushPath = () => {
   const setCurrentBrowserPathname = useContext(UpdateContext);
 
   return useCallback(
-    (path: string, title: string | undefined = '') => {
-      window.history.pushState({}, title, path);
-      setCurrentBrowserPathname();
+    (url: string) => {
+      setCurrentBrowserPathname({ url, data: {}, type: 'PUSH' });
     },
     [setCurrentBrowserPathname],
   );
@@ -47,9 +79,8 @@ export const useReplacePath = () => {
   const setCurrentBrowserPathname = useContext(UpdateContext);
 
   return useCallback(
-    (path: string, title = '') => {
-      window.history.replaceState({}, title, path);
-      setCurrentBrowserPathname();
+    (url: string) => {
+      setCurrentBrowserPathname({ url, data: {}, type: 'REPLACE' });
     },
     [setCurrentBrowserPathname],
   );

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>0.2.3 (2020-10-28)</small>
+
+* pkg: path-to-regex patch ([b378fb9](https://github.com/notwillk/pojo-router/commit/b378fb9))
+
+
+
+
+
 ## <small>0.2.2 (2020-10-27)</small>
 
 * fix: Child types ([8580779](https://github.com/notwillk/pojo-router/commit/8580779))
